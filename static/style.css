@@ -1,0 +1,274 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #172033;
+    background: #f4f8fc;
+}
+
+.main-header {
+    padding: 70px 20px;
+    text-align: center;
+    color: white;
+    background:
+        linear-gradient(
+            135deg,
+            #163d75,
+            #2774b8
+        );
+}
+
+.header-content {
+    width: min(900px, 100%);
+    margin: auto;
+}
+
+.project-label,
+.section-label {
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.main-header h1 {
+    margin-bottom: 16px;
+    font-size: clamp(34px, 6vw, 58px);
+}
+
+.subtitle {
+    max-width: 720px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #e8f3ff;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: -35px auto 60px;
+}
+
+.upload-card,
+.result-section {
+    padding: 32px;
+    border: 1px solid #dbe5ef;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 14px 35px rgba(26, 59, 92, 0.12);
+}
+
+.upload-card {
+    margin-bottom: 28px;
+}
+
+.upload-card h2 {
+    margin-bottom: 10px;
+}
+
+.upload-card p {
+    margin-bottom: 20px;
+    color: #5f6c7b;
+    line-height: 1.6;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+}
+
+.file-label {
+    font-weight: 700;
+}
+
+input[type="file"] {
+    flex: 1;
+    min-width: 240px;
+    padding: 13px;
+    border: 1px solid #cbd7e3;
+    border-radius: 9px;
+    background: #f9fbfd;
+}
+
+button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    background: #1769aa;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #10558c;
+}
+
+.message-box {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border-left: 5px solid #d76a25;
+    border-radius: 7px;
+    background: #fff4e9;
+    color: #8a3f10;
+}
+
+.message-box p {
+    margin: 0;
+    color: inherit;
+}
+
+.result-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.status {
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.status.passed {
+    color: #136331;
+    background: #dff6e7;
+}
+
+.status.failed {
+    color: #8d2c27;
+    background: #fde4e1;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.metric-card {
+    padding: 20px;
+    border: 1px solid #dce6ef;
+    border-radius: 13px;
+    background: #f8fbfe;
+}
+
+.metric-card span {
+    display: block;
+    margin-bottom: 10px;
+    color: #697787;
+}
+
+.metric-card strong {
+    font-size: 27px;
+    color: #174f84;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.image-card,
+.text-card {
+    padding: 20px;
+    border: 1px solid #dce6ef;
+    border-radius: 13px;
+    background: #fbfdff;
+}
+
+.image-card h3,
+.text-card h3 {
+    margin-bottom: 16px;
+}
+
+.image-card img {
+    display: block;
+    width: 100%;
+    max-height: 430px;
+    object-fit: contain;
+    border-radius: 9px;
+    background: white;
+}
+
+.text-card-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.text-card-heading h3 {
+    margin: 0;
+}
+
+.text-card-heading a {
+    padding: 9px 13px;
+    border-radius: 7px;
+    color: white;
+    background: #1769aa;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+pre {
+    min-height: 160px;
+    padding: 18px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-radius: 9px;
+    font-family: Consolas, monospace;
+    line-height: 1.7;
+    background: #eef4f9;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+    color: #687586;
+}
+
+@media (max-width: 650px) {
+    .main-header {
+        padding: 55px 20px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .upload-card,
+    .result-section {
+        padding: 22px;
+    }
+
+    .result-heading,
+    .text-card-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}

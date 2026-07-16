@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI OCR Document Scanner</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <p class="project-label">
+                Artificial Intelligence Project 4
+            </p>
+
+            <h1>AI OCR Document Scanner</h1>
+
+            <p class="subtitle">
+                Upload a document image and extract readable text
+                using image preprocessing and Tesseract OCR.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="upload-card">
+            <h2>Upload a Document Image</h2>
+
+            <p>
+                Supported formats: PNG, JPG and JPEG.
+                Maximum file size: 10 MB.
+            </p>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="message-box">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <label for="image" class="file-label">
+                    Choose document image
+                </label>
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".png,.jpg,.jpeg"
+                    required
+                >
+
+                <button type="submit">
+                    Scan Document
+                </button>
+            </form>
+        </section>
+
+        {% if result %}
+            <section class="result-section">
+                <div class="result-heading">
+                    <div>
+                        <p class="section-label">
+                            Recognition Result
+                        </p>
+
+                        <h2>Document Analysis</h2>
+                    </div>
+
+                    {% if result.passed %}
+                        <span class="status passed">
+                            PASS
+                        </span>
+                    {% else %}
+                        <span class="status failed">
+                            NEEDS IMPROVEMENT
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span>Average Confidence</span>
+
+                        <strong>
+                            {{ result.confidence }}%
+                        </strong>
+                    </div>
+
+                    <div class="metric-card">
+                        <span>Required Confidence</span>
+
+                        <strong>80%</strong>
+                    </div>
+
+                    <div class="metric-card">
+                        <span>Detected Words</span>
+
+                        <strong>
+                            {{ result.detected_word_count }}
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="image-grid">
+                    <article class="image-card">
+                        <h3>Original Image</h3>
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename=result.original_image
+                            ) }}"
+                            alt="Original uploaded document"
+                        >
+                    </article>
+
+                    <article class="image-card">
+                        <h3>Processed Image</h3>
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename=result.processed_image
+                            ) }}"
+                            alt="Processed black-and-white document"
+                        >
+                    </article>
+                </div>
+
+                <article class="text-card">
+                    <div class="text-card-heading">
+                        <h3>Extracted Text</h3>
+
+                        <a
+                            href="{{ url_for(
+                                'static',
+                                filename=result.text_file
+                            ) }}"
+                            download
+                        >
+                            Save Text File
+                        </a>
+                    </div>
+
+                    <pre>{{ result.text }}</pre>
+                </article>
+            </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>
+            Developed using Python, Flask, OpenCV and Tesseract OCR.
+        </p>
+    </footer>
+</body>
+</html>
